@@ -1,4 +1,4 @@
-#include<bits/stdc++.h>
+#include<iostream>
 using namespace std;
 int minimum(int a, int b, int c)
 {
