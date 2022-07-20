@@ -1,6 +1,4 @@
-#include<iostream>
-#include<algorithm>
-#include<string.h>
+#include<bits/stdc++.h>
 using namespace std;
 int minimum(int a, int b, int c)
 {
@@ -16,7 +14,7 @@ int main()
 	cout<<"Enter String 2:";
 	cin>>b;
 	la=a.size()+1;
-	lb=b.length()+1;
+	lb=b.size()+1;
 	int s[lb][la];
 	for(i=0;i<la;i++)
 		s[0][i]=i;

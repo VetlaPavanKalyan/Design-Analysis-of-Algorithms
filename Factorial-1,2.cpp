@@ -1,4 +1,4 @@
-//#include<iostream>
+#include<iostream>
 //int fact_rec(int);
 //int fact(int);
 //using namespace std;
@@ -57,5 +57,5 @@ int main()
             sum=sum+j;
         }
     }
-    printf("%d",sum);
+    std::cout<<sum;
 }
