@@ -1,48 +1,63 @@
 #include<bits/stdc++.h>
 using namespace std;
-int lCS(char*,char*,int,int);
 int main()
 {
-    int m,n;
-    char a[100],b[100];
+    vector <char> v;
+    string a,b;
     cout<<"Enter 1st String :"<<endl;
     cin>>a;
     cout<<"Enter 2nd string:"<<endl;
     cin>>b;
-    m=strlen(a);
-    n=strlen(b);
-    int t=lCS(a,b,m,n);
-    cout<<"Length of the common String is: "<<t<<endl;
-    return 0;
-}
-int lCS(char* a,char* b,int m,int n)
-{
-    int l[m+1][n+1],t;
-    vector <char> v;
-    for(int i=0;i<=m;i++)
+    int la = a.length() +1;
+	int lb = b.length() +1;
+	int s[la][lb];
+	for(int i=0;i<la;i++)
     {
-        for(int j=0;j<=n;j++)
+        s[i][0]=0;
+    }
+    for(int i=0;i<lb;i++)
+    {
+        s[0][i]=0;
+    }
+    for(int i=1;i<la;i++)
+    {
+        for(int j=1;j<lb;j++)
         {
-            if(i==0||j==0)
+            if(a[i-1]!=b[j-1])
             {
-                l[i][j]=0;
-            }
-            else if (a[i-1]==b[j-1])
-            {
-                l[i][j]=l[i-1][j-1]+1;
+                s[i][j]=max(s[i-1][j],s[i][j-1]);
             }
             else
             {
-                l[i][j]=max(l[i-1][j],l[i][j-1]);
+                s[i][j]=s[i-1][j-1]+1;
             }
         }
     }
-    
-    cout<<"Longest Common String is : ";
-    for(int i=v.size();i>=0;i++)
+    cout<<"minimum length of lcs ="<<s[la-1][lb-1]<<endl;
+    int x,y;
+    x=la-1;
+    y=lb-1;
+    while(s[x][y]>0)
+    {
+        if(s[x][y]==s[x][y-1])
+        {
+            y--;
+        }
+        else if(s[x][y]==s[x-1][y])
+        {
+            x--;
+        }
+        else
+        {
+            x--;
+            y--;
+            v.push_back(a[x]);
+        }
+    }
+    reverse(v.begin(),v.end());
+    for(int i=0;i<v.size();i++)
     {
         cout<<v[i]<<" ";
     }
-    cout<<endl;
-    return l[m][n];
+    return 0;
 }

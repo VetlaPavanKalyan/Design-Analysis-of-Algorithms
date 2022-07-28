@@ -1,50 +1,42 @@
-#include<iostream>
-void quickSort(int[],int,int);
-int partition(int[],int,int);
+#include<bits/stdc++.h>
 using namespace std;
+void quickSort(int[],int,int);
 int main()
 {
 	int n,i;
-	cout<<"Enter No.of Elements:";
 	cin>>n;
-	int a[n];
-	cout<<"Enter Elements of the Array:"<<endl;
+	int arr[n];
 	for(i=0;i<n;i++)
 	{
-		cin>>a[i];
+		cin>>arr[i];
 	}
-	quickSort(a,0,n);
+	quickSort(arr,0,n-1);
+	cout<<"Sorted array is"<<endl;
+	for(int x:arr)
+	{
+		cout<<x<<" ";
+	}
 	return 0;
 }
-void quickSort(int a[],int low,int high)
+void quickSort(int arr[],int low,int high)
 {
 	if(low<high)
 	{
-		int j=partition(a,low,high);
-		quickSort(a,low,j);
-		quickSort(a,j+1,high);
-		for(int i=0;i<high;i++)
+		int i,pivot,j;
+		i=low;
+		pivot=low;
+		j=high;
+		while(i<j)
 		{
-			cout<<a[i]<<" ";
+			while(arr[pivot]>=arr[i] && i<high)
+				i++;
+			while(arr[pivot]<arr[j])
+				j--;
+			if(i<j)
+				swap(arr[i],arr[j]);
 		}
+		swap(arr[pivot],arr[j]);
+		quickSort(arr,low,j-1);
+		quickSort(arr,j+1,high);
 	}
-}
-int partition(int a[],int low,int high)
-{
-	int pivot=a[low];
-	int i=low;
-	int j=high;
-	while(i<j)
-	{
-		do
-		{
-			i++;
-		}while(a[i]<=pivot&&i<high);
-		do
-		{
-			j--;
-		}while(a[i]>pivot);
-	}
-	std::swap(a[low],a[j]);
-	return j;
 }
