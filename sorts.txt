@@ -1,0 +1,60 @@
+bubble_sort:- i:0->n-1
+	      j:0->n-1
+		if(a[j+1]<a[j])
+		swap(a[j],a[j+1])
+-----
+selection_sort:-i:0->n-1
+		min=i
+		j:i+1->n
+		if(a[min]>a[j])
+		min=j
+		swap(a[i],a[min])
+-----
+insertion_sort:i:1->n-1
+		j=i
+		while(j>0&&a[j-1]>a[j])
+		swap(a[j],a[j-1])
+		j--	
+-----
+factorial using recursion
+int fact(int n)
+if(n==1||n==0)
+return 1
+else
+return n*fact(n-1)
+-----
+factorial using iteration
+f=1
+int fact(int n)
+if(n==0)
+return f
+else
+for(int i=2;i<=n;i++)
+f=f*i
+return f
+-----
+gcd(a,b)
+	if(a>0)
+		if(a<b)
+			rem=b%a
+			return gcd(rem,a)
+		else
+			rem=a%b
+			return gcd(rem,b)
+	return b
+-----
+quick(a[],first,last)
+i=pivot=first
+j=last
+while(i<j)
+	while(a[pivot]>=a[i]&&i<last)
+		i++
+	while(a[pivot]<a[j])
+		j--
+	if(i<j)
+	swap(a[i],a[j])
+swap(a[j],a[pivot])
+quick(a[],first,j-1)
+quick(a[],j+1,last)
+-----
+			
